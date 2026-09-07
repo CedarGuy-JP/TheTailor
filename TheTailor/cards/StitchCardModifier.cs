@@ -57,24 +57,48 @@ namespace TheTailor.Cards
                 _stitchedCard.AddKeyword(Keywords.Stitched);
             }
         }
-        
 
-        public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+        public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
-            if (!StitchTrackAutoplaySingleton.BlockedFromAutoplay.Contains(cardPlay.Card) && cardPlay.Card == Owner && Owner != null && StitchedCard != null && cardPlay.PlayIndex == 0)
+            if (cardPlay.Card == Owner && !StitchTrackAutoplaySingleton.BlockedFromAutoplay.Contains(Owner) && Owner != null && StitchedCard != null && cardPlay.PlayIndex == 0)
             {
+                TailorStitchQueueSingleton.BeingPlayed.Add(Owner);
+                TailorStitchQueueSingleton.BeingPlayed.Add(StitchedCard);
+
                 Creature? target = GetTarget(StitchedCard, StitchedCard.CombatState);
                 if (cardPlay.Target != null && cardPlay.Target.IsAlive && target != null && cardPlay.Card.TargetType == StitchedCard.TargetType)
                 {
                     target = cardPlay.Target;
                 }
-
                 await CardCmd.AutoPlay(choiceContext, StitchedCard, target, StitchedAutoPlayType.Stitched);
+            }
+        }
 
-                if (cardPlay.Card.Type == CardType.Power || StitchedCard.Type == CardType.Power)
+        public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+        {
+            TailorStitchQueueSingleton.BeingPlayed.Remove(cardPlay.Card);
+
+            if (cardPlay.Card != Owner)
+            {
+                return;
+            }
+
+            if (StitchedCard == null || StitchedCard.Pile == null || !StitchedCard.IsInCombat)
+            {
+                if (!TailorStitchQueueSingleton.BeingPlayed.Contains(Owner))
                 {
-                    await StitchCmd.UnstitchCard(cardPlay.Card);
+                    await StitchCmd.UnstitchCard(Owner);
+                }
+            }
+            else if (Owner.Type == CardType.Power || Owner.Pile.Type == PileType.Exhaust || StitchedCard.Pile.Type == PileType.Exhaust || Owner.Pile.Type == PileType.None || StitchedCard.Pile.Type == PileType.None)
+            {
+                if (!TailorStitchQueueSingleton.BeingPlayed.Contains(StitchedCard))
+                {
                     await StitchCmd.UnstitchCard(StitchedCard);
+                }
+                if (!TailorStitchQueueSingleton.BeingPlayed.Contains(Owner))
+                {
+                    await StitchCmd.UnstitchCard(Owner);
                 }
             }
         }
@@ -128,14 +152,23 @@ namespace TheTailor.Cards
             StitchCardModifier? cardStitch = card.GetModifier<StitchCardModifier>();
             if (cardStitch != null)
             {
-                if (cardStitch.StitchedCard == null || !cardStitch.StitchedCard.IsInCombat || cardStitch.StitchedCard.Pile == null)
+                if (cardStitch.StitchedCard == null || cardStitch.StitchedCard.Pile == null || !cardStitch.StitchedCard.IsInCombat)
                 {
-                    await StitchCmd.UnstitchCard(card);
+                    if (!TailorStitchQueueSingleton.BeingPlayed.Contains(card))
+                    {
+                        await StitchCmd.UnstitchCard(card);
+                    }
                 }
-                else if (card.Pile.Type == PileType.Exhaust || cardStitch.StitchedCard.Pile.Type == PileType.Exhaust)
+                else if (card.Pile.Type == PileType.Exhaust || cardStitch.StitchedCard.Pile.Type == PileType.Exhaust || card.Pile.Type == PileType.None || cardStitch.StitchedCard.Pile.Type == PileType.None)
                 {
-                    await StitchCmd.UnstitchRelatedCard(card);
-                    await StitchCmd.UnstitchCard(card);
+                    if (!TailorStitchQueueSingleton.BeingPlayed.Contains(cardStitch.StitchedCard))
+                    {
+                        await StitchCmd.UnstitchCard(cardStitch.StitchedCard);
+                    }
+                    if (!TailorStitchQueueSingleton.BeingPlayed.Contains(card))
+                    {
+                        await StitchCmd.UnstitchCard(card);
+                    }
                 }
             }
         }

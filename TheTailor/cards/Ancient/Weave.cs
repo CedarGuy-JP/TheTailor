@@ -29,7 +29,7 @@ namespace TheTailor.Cards.Ancient
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/weaveBeta.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/weaveBeta.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/weaveBeta.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move), new DynamicVar("Delicate", 2)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Move), new DynamicVar("Delicate", 2)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.Stitch)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Retain];
 
@@ -52,7 +52,7 @@ namespace TheTailor.Cards.Ancient
         {
             DynamicVars["Delicate"].UpgradeValueBy(1);
             RemoveKeyword(CardKeyword.Exhaust);
-            DynamicVars.Damage.UpgradeValueBy(7m);
+            DynamicVars.Damage.UpgradeValueBy(6m);
         }
     }
 }

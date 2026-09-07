@@ -29,10 +29,10 @@ namespace TheTailor.Cards.Common
     public class Procure() : CustomCardModel(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
         public override bool GainsBlock => true;
-        public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/procureBeta.png";
-        public override string? PortraitPath => "res://TheTailor/images/card_portraits/procureBeta.png";
+        public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/procure.png";
+        public override string? PortraitPath => "res://TheTailor/images/card_portraits/procure.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/procureBeta.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4, ValueProp.Move)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.Stitch)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

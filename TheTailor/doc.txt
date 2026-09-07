@@ -8,8 +8,3 @@
 -- CURRENT ISSUES --
 - Byrd/Legion have odd positioning
 - Osty stats covered up by Minions
-
-Power Icons
-- Cheese Strength
-- Heavy Duty
-- Pincushion

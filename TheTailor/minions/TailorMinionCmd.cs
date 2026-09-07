@@ -147,7 +147,7 @@ namespace TheTailor.Minions
             {
                 foreach (Creature creature in accessor.Pets)
                 {
-                    if (creature.Monster is T)
+                    if (creature.Monster is TailorMinion)
                     {
                         replaceIndex = accessor.Pets.IndexOf(creature);
                         break;
@@ -351,12 +351,10 @@ namespace TheTailor.Minions
 
                     if (creature.Monster is MinionLinen)
                     {
-                        foreach (Creature creatureTarget in player.Creature.CombatState.Enemies)
-                        {
-                            await PowerCmd.Apply<VulnerablePower>(choiceContext, creatureTarget, 2, player.Creature, null);
-                            await CreatureCmd.TriggerAnim(creature, "cast", 0f);
-                            await Cmd.Wait(0.2f);
-                        }
+                        Creature enemy = player.RunState.Rng.CombatTargets.NextItem(player.Creature.CombatState.HittableEnemies);
+                        await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, 2, player.Creature, null);
+                        await CreatureCmd.TriggerAnim(creature, "cast", 0f);
+                        await Cmd.Wait(0.2f);
                         if (minionTriggerType != MinionTriggerType.All) { break; }
                     }
                     else if (creature.Monster is MinionCotton)

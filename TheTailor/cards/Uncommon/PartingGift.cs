@@ -29,6 +29,7 @@ namespace TheTailor.Cards.Uncommonz
     [Pool(typeof(TheTailorCardPool))]
     public class PartingGift() : CustomCardModel(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
+        public override bool GainsBlock => false;
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/partingGiftBeta.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/partingGiftBeta.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/partingGiftBeta.png";

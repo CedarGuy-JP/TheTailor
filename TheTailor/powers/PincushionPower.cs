@@ -34,7 +34,14 @@ namespace TheTailor.Powers
         {
             if (Owner.IsAlive && Owner == target && result.TotalDamage > 0 && result.Props.HasFlag(ValueProp.Move) && dealer != null && dealer.Side == CombatSide.Player)
             {
-                await PowerCmd.Apply<PincushionStrengthPower>(choiceContext, dealer, Amount, dealer, null);
+                if (dealer.PetOwner != null)
+                {
+                    await PowerCmd.Apply<PincushionStrengthPower>(choiceContext, dealer.PetOwner.Creature, Amount, dealer, null);
+                }
+                else
+                {
+                    await PowerCmd.Apply<PincushionStrengthPower>(choiceContext, dealer, Amount, dealer, null);
+                }
             }
         }
 

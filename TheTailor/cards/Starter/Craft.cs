@@ -27,14 +27,14 @@ using TheTailor.Character;
 namespace TheTailor.Cards.Starter
 {
     [Pool(typeof(TheTailorCardPool))]
-    public class Craft() : CustomCardModel(2, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public class Craft() : CustomCardModel(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {
         protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Minion };
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/craft.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/craft.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/craftBeta.png";
         protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Delicate", 2)];
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.Delicate), HoverTipFactory.FromKeyword(TheTailor.Keywords.LeatherMinion)];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.LeatherMinion), HoverTipFactory.FromKeyword(TheTailor.Keywords.Delicate), HoverTipFactory.FromKeyword(CardKeyword.Exhaust)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
@@ -45,6 +45,10 @@ namespace TheTailor.Cards.Starter
         protected override void OnUpgrade()
         {
             EnergyCost.UpgradeBy(-1);
+            /*
+            RemoveKeyword(CardKeyword.Exhaust);
+            DynamicVars["Delicate"].UpgradeValueBy(1);
+            */
         }
     }
 }

@@ -31,17 +31,15 @@ namespace TheTailor.Powers
         public override PowerType Type => PowerType.Buff;
         public override PowerStackType StackType => PowerStackType.Counter;
 
-        public override Task AfterCardEnteredCombat(CardModel card)
+        public override async Task AfterCardEnteredCombat(CardModel card)
         {
-            if (card.IsClone || card is not Cards.Token.Patch)
+            if (card.IsClone || card is not Cards.Token.Patch || card.Owner != Owner.Player)
             {
-                return Task.CompletedTask;
+                return;
             }
 
             Flash();
             CardCmd.Enchant<Sharp>(card, Amount);
-
-            return Task.CompletedTask;
         }
 
         public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)

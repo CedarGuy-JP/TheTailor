@@ -27,7 +27,7 @@ namespace TheTailor.Relics.Uncommon
         public override string PackedIconPath => "res://TheTailor/images/relics/stripedScarf.png";
         protected override string PackedIconOutlinePath => "res://TheTailor/images/relics/stripedScarfOutline.png";
         protected override string BigIconPath => "res://TheTailor/images/relics/stripedScarfBig.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Unpowered)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Unpowered)];
 
         public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
         {

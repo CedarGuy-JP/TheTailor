@@ -20,6 +20,7 @@ using TheTailor;
 using TheTailor.Extensions;
 using TheTailor.Cards;
 using TheTailor.Character;
+using MegaCrit.Sts2.Core.Logging;
 
 namespace TheTailor.Cards.Uncommon
 {
@@ -32,14 +33,31 @@ namespace TheTailor.Cards.Uncommon
             {
                 LocString titleLocString = TitleLocString;
                 LocString prefix = new LocString("cards", "THETAILOR-SLAPAMOUNT-" + Math.Min(DynamicVars["Slaps"].BaseValue, 31));
+                bool nonSpaceLanguage = false;
+
+                Log.Debug(LocManager.Instance.Language);
+
+                switch (LocManager.Instance.Language)
+                {
+                    case "zhs":
+                    case "zht":
+                    case "jpn":
+                    case "kor":
+                        nonSpaceLanguage = true;
+                        break;
+                    default:
+                        break;
+                }
+                
+                string space = LocManager.Instance.Language = nonSpaceLanguage ? "" : " ";
 
                 if (!IsUpgraded)
                 {
-                    return $"{prefix.GetFormattedText()} {titleLocString.GetFormattedText()}";
+                    return $"{prefix.GetFormattedText()}{space}{titleLocString.GetFormattedText()}";
                 }
                 else
                 {
-                    return $"{prefix.GetFormattedText()} {titleLocString.GetFormattedText()}+";
+                    return $"{prefix.GetFormattedText()}{space}{titleLocString.GetFormattedText()}+";
                 }
             }
         }

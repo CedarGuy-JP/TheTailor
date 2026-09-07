@@ -33,7 +33,7 @@ namespace TheTailor.Cards.Uncommon
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/cheeseboard.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/cheeseboard.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/cheeseboardBeta.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Vigor", 2)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Vigor", 3)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.Premium), HoverTipFactory.FromPower<VigorPower>()];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Unplayable, CardKeyword.Retain];
 
@@ -53,7 +53,7 @@ namespace TheTailor.Cards.Uncommon
 
         protected override void OnUpgrade()
         {
-            DynamicVars["Vigor"].UpgradeValueBy(2);
+            DynamicVars["Vigor"].UpgradeValueBy(1);
         }
     }
 }

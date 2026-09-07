@@ -34,7 +34,14 @@ namespace TheTailor.Powers
         {
             if (Owner == target && result.TotalDamage > 0 && result.Props.HasFlag(ValueProp.Move) && dealer != null && dealer.Side == CombatSide.Player)
             {
-                await CreatureCmd.GainBlock(dealer, new BlockVar(Amount, ValueProp.Unpowered), null);
+                if (dealer.PetOwner != null)
+                {
+                    await CreatureCmd.GainBlock(dealer.PetOwner.Creature, new BlockVar(Amount, ValueProp.Unpowered), null);
+                }
+                else
+                {
+                    await CreatureCmd.GainBlock(dealer, new BlockVar(Amount, ValueProp.Unpowered), null);
+                }
             }
         }
 
