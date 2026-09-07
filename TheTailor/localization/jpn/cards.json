@@ -182,7 +182,7 @@
   "THETAILOR-SOMMELIER.title": "ソムリエ",
   "THETAILOR-SORTIE.description": "すべての敵に{Damage:diff()}ダメージを与える。\nすべての[gold]ミニオン[/gold]を死亡させる。",
   "THETAILOR-SORTIE.title": "一斉突撃",
-  "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]デリケート[/gold]{Delicate:diff()}。\n|}[gold]レザーミニオン[/gold]を1体仕立てる。",
+  "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]デリケート[/gold]{Delicate:diff()}。\n|}[gold]バーラップミニオン[/gold]を1体仕立てる。",
   "THETAILOR-SPARE_MATERIAL.title": "余り布",
   "THETAILOR-SPOOL.description": "[gold]デリケート[/gold]{Delicate:diff()}。\n{Block:diff()}[gold]ブロック[/gold]を得る。\n[gold]手札[/gold]のカード2枚を[gold]縫合[/gold]する。",
   "THETAILOR-SPOOL.title": "糸巻き",

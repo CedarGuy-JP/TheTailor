@@ -35,8 +35,6 @@ namespace TheTailor.Cards.Uncommon
                 LocString prefix = new LocString("cards", "THETAILOR-SLAPAMOUNT-" + Math.Min(DynamicVars["Slaps"].BaseValue, 31));
                 bool nonSpaceLanguage = false;
 
-                Log.Debug(LocManager.Instance.Language);
-
                 switch (LocManager.Instance.Language)
                 {
                     case "zhs":
@@ -49,7 +47,7 @@ namespace TheTailor.Cards.Uncommon
                         break;
                 }
                 
-                string space = LocManager.Instance.Language = nonSpaceLanguage ? "" : " ";
+                string space = nonSpaceLanguage ? "" : " ";
 
                 if (!IsUpgraded)
                 {

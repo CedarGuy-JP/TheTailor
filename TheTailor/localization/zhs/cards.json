@@ -52,7 +52,7 @@
     "THETAILOR-SLICK_STRIKE.title": "疾风打击",
     "THETAILOR-SLICK_STRIKE.description": "[gold]易损[/gold]{Delicate:diff()}。\n造成{Damage:diff()}点伤害。\n将此牌返回你的[gold]手牌[/gold]。",
     "THETAILOR-SPARE_MATERIAL.title": "边角料",
-    "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]易损[/gold]{Delicate:diff()}。\n}制作一个[gold]皮革仆从[/gold]。",
+    "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]易损[/gold]{Delicate:diff()}。\n}制作一个[gold]粗麻布仆从[/gold]。",
     "THETAILOR-MATCHING.title": "配对",
     "THETAILOR-MATCHING.description": "造成{Damage:diff()}点伤害。\n[gold]升级[/gold]所有“配对”牌。\n[gold]精品[/gold]。",
     "THETAILOR-REPURPOSE.title": "再利用",

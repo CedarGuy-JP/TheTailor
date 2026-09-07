@@ -52,7 +52,7 @@
     "THETAILOR-SLICK_STRIKE.title": "Slick Strike",
     "THETAILOR-SLICK_STRIKE.description": "[gold]Delicate[/gold] {Delicate:diff()}.\nDeal {Damage:diff()} damage.\nReturn this card to your [gold]Hand[/gold].",
     "THETAILOR-SPARE_MATERIAL.title": "Spare Material",
-    "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]Delicate[/gold] {Delicate:diff()}.\n}Create a [gold]Leather Minion[/gold].",
+    "THETAILOR-SPARE_MATERIAL.description": "{IfUpgraded:show:[gold]Delicate[/gold] {Delicate:diff()}.\n}Create a [gold]Burlap Minion[/gold].",
     "THETAILOR-MATCHING.title": "Matching",
     "THETAILOR-MATCHING.description": "Deal {Damage:diff()} damage.\n[gold]Upgrade[/gold] ALL copies of this card.\n[gold]Premium[/gold].",
     "THETAILOR-REPURPOSE.title": "Repurpose",
