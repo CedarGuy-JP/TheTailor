@@ -65,7 +65,7 @@ namespace TheTailor.Minions
         /// <summary>
         ///     Adds a minion.
         /// </summary>
-        public static async Task<bool> AddMinion<T>(PlayerChoiceContext playerChoiceContext, Player owner, int maxHpOverride = 0, int withTriggers = 0) where T : MinionModel
+        public static async Task<bool> AddMinion<T>(PlayerChoiceContext playerChoiceContext, Player owner, int maxHpOverride = 0, int withTriggers = 0, bool toFront = false) where T : MinionModel
         {
             if (CanMinionBeAdded(owner))
             {
@@ -73,6 +73,20 @@ namespace TheTailor.Minions
                 if (maxHpOverride > 0 && result != null)
                 {
                     await CreatureCmd.SetMaxAndCurrentHp(result, maxHpOverride);
+                }
+
+                if (toFront)
+                {
+                    PetsOrderAccessor accessor = new PetsOrderAccessor(owner);
+                    if (accessor != null && accessor.Pets != null && accessor.Pets.Contains(result) && accessor.Pets.Count > 1)
+                    {
+                        accessor.Pets.Remove(result);
+                        accessor.Pets.Insert(0, result);
+                        _ = MinionAnimCmd.Rearrange(duration: 0.5f);
+                        await CreatureCmd.TriggerAnim(result, "cast", 0f);
+                        accessor.SetManualRearranged();
+                        PetOrderSnapshotManager.TakeSnapshot(result.PetOwner);
+                    }
                 }
 
                 await PutOstyAtBack(playerChoiceContext, owner);

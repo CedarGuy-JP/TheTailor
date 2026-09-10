@@ -34,7 +34,7 @@ namespace TheTailor.Powers
             {
                 for (int i = 0; i < Amount; i++)
                 {
-                    if (await TailorMinionCmd.AddMinion<MinionLinen>(choiceContext, player))
+                    if (await TailorMinionCmd.AddMinion<MinionLinen>(choiceContext, player, toFront: true))
                     {
                         Flash();
                     }

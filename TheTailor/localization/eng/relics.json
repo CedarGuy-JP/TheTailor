@@ -24,6 +24,6 @@
     "THETAILOR-LIFE_ESSENCE.description": "Whenever a Minion is created, trigger its ability.",
     "THETAILOR-LIFE_ESSENCE.flavor": "Everything's got life in it, boy. Especially you!! You've just gotta share some.\n- Guildmaster Kress",
     "THETAILOR-MINION_CRITIC.title": "Minion Critic",
-    "THETAILOR-MINION_CRITIC.description": "At the start of your turn, draw [blue]{Cards}[/blue] card and destroy a random Minion.",
+    "THETAILOR-MINION_CRITIC.description": "At the start of your turn, draw [blue]{Cards}[/blue] card and destroy your rightmost Minion.",
     "THETAILOR-MINION_CRITIC.flavor": "Mine Master left not a note with this thing. I herefore recount an idle musing on his behalf: 'Don't trust a critic in fancy dress!'\n- The Tailor"
 }
