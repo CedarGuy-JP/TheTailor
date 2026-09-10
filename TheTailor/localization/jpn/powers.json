@@ -107,7 +107,7 @@
   "THETAILOR-WOOL_POWER.description": "各ターン開始時、持ち主に[gold]ウールの脱力[/gold]を付与する。",
   "THETAILOR-WOOL_POWER.smartDescription": "各ターン開始時、持ち主に[gold]ウールの脱力[/gold]{Amount}を付与する。",
   "THETAILOR-WOOL_POWER.title": "ウール",
-  "THETAILOR-WOOL_WEAK_POWER.description": "次のアタックが敵に[gold]脱力[/gold]を与える。",
-  "THETAILOR-WOOL_WEAK_POWER.smartDescription": "次のアタック{Amount}回が敵に[gold]脱力[/gold]1を与える。",
+  "THETAILOR-WOOL_WEAK_POWER.description": "次のアタックが敵に[gold]脱力[/gold]を付与する。",
+  "THETAILOR-WOOL_WEAK_POWER.smartDescription": "次のアタック{Amount}回が敵に[gold]脱力[/gold]1を付与する。",
   "THETAILOR-WOOL_WEAK_POWER.title": "ウールの脱力"
 }
