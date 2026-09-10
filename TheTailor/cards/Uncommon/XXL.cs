@@ -32,12 +32,13 @@ namespace TheTailor.Cards.Uncommon
     [Pool(typeof(TheTailorCardPool))]
     public class XXL() : CustomCardModel(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
+        public override int MaxUpgradeLevel => 99999;
         protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CardTag.Minion };
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/xxlBeta.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/xxlBeta.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/xxlBeta.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(14)];
-        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.LinenMinion)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(12)];
+        protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.LinenMinion), HoverTipFactory.FromKeyword(TheTailor.Keywords.Premium)];
         public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

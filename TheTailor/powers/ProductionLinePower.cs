@@ -28,7 +28,7 @@ namespace TheTailor.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.LinenMinion)];
 
-        public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        public override async Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
         {
             if (Owner == player.Creature)
             {

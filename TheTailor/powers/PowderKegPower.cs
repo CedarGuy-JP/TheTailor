@@ -35,7 +35,7 @@ namespace TheTailor.Powers
 
         public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
         {
-            if (creature.PetOwner != null && Owner == creature.PetOwner.Creature && creature.Monster is MinionLeather)
+            if (creature.PetOwner != null && Owner == creature.PetOwner.Creature && (creature.Monster is MinionLeather || creature.Monster is MinionBurlap))
             {
                 Flash();
                 await Cmd.CustomScaledWait(0.2f, 0.4f);

@@ -34,19 +34,19 @@ namespace TheTailor.Cards.Rare
         public override string? CustomPortraitPath => "res://TheTailor/images/card_portraits/luxuryBeta.png";
         public override string? PortraitPath => "res://TheTailor/images/card_portraits/luxuryBeta.png";
         public override string? BetaPortraitPath => "res://TheTailor/images/card_portraits/luxuryBeta.png";
-        protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1), new DynamicVar("Delicate", 2)];
+        protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(3, ValueProp.Move), new DynamicVar("Delicate", 2)];
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromKeyword(TheTailor.Keywords.SilkMinion), HoverTipFactory.FromKeyword(TheTailor.Keywords.Premium)];
 
         protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
         {
             await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
             await TailorMinionCmd.AddOrReplaceMinion<MinionSilk>(choiceContext, Owner, true);
-            await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
         }
 
         protected override void OnUpgrade()
         {
-            DynamicVars.Cards.UpgradeValueBy(1);
+            DynamicVars.Block.UpgradeValueBy(3);
         }
     }
 }

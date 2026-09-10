@@ -40,41 +40,36 @@ namespace TheTailor.Relics.Shop
             return count + DynamicVars.Cards.IntValue;
         }
 
-        public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
+        public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
         {
             if (player == Owner)
             {
-                List<MonsterModel> randomCreatures = new();
-
-                PetsOrderAccessor accessor = new PetsOrderAccessor(player);
-                if (accessor != null && accessor.Pets != null && accessor.Pets.Count > 0)
+                int replaceIndex = -1;
+                PetsOrderAccessor accessor = new PetsOrderAccessor(Owner);
+                if (accessor.Pets != null)
                 {
                     foreach (Creature creature in accessor.Pets)
                     {
                         if (creature.Monster is TailorMinion)
                         {
-                            randomCreatures.Add(creature.Monster);
+                            replaceIndex = accessor.Pets.IndexOf(creature);
+                            break;
                         }
                     }
+
+                    if (replaceIndex == -1)
+                    {
+                        return;
+                    }
+
+                    accessor.Pets[replaceIndex].RemoveAllPowersInternalExcept();
+                    await CreatureCmd.Kill(accessor.Pets[replaceIndex], true);
+                    _ = MinionAnimCmd.Rearrange(duration: 0.5f);
+                    accessor.SetManualRearranged();
+                    PetOrderSnapshotManager.TakeSnapshot(Owner);
+
+                    await TailorMinionCmd.PutOstyAtBack(choiceContext, Owner);
                 }
-
-                if (randomCreatures.Count > 1)
-                {
-                    randomCreatures.StableShuffle(player.PlayerRng.Transformations);
-                }
-                else if (randomCreatures.Count <= 0)
-                {
-                    return;
-                }
-
-                int minionIndex = accessor.Pets.IndexOf(randomCreatures[0].Creature);
-
-                accessor.Pets[minionIndex].RemoveAllPowersInternalExcept();
-
-                await CreatureCmd.Kill(accessor.Pets[minionIndex], true);
-                _ = MinionAnimCmd.Rearrange(duration: 0.5f);
-                accessor.SetManualRearranged();
-                PetOrderSnapshotManager.TakeSnapshot(player);
             }
         }
     }

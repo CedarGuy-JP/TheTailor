@@ -29,7 +29,7 @@ namespace TheTailor.Powers
         public override PowerStackType StackType => PowerStackType.Counter;
         protected override IEnumerable<IHoverTip> ExtraHoverTips => [HoverTipFactory.FromPower<StrengthPower>()];
 
-        public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+        public override async Task AfterPlayerTurnStartLate(PlayerChoiceContext choiceContext, Player player)
         {
             if (Owner.IsPet && Owner.PetOwner == player)
             {
